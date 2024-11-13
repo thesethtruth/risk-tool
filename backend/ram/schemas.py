@@ -12,11 +12,11 @@ class MeasureBase(BaseModel):
 
 
 class MeasureCreate(MeasureBase):
-    pass
+    risks: Optional[List[int]] = []
 
 
 class MeasureUpdate(MeasureBase):
-    pass
+    risks: List[int] = []
 
 
 class RiskBase(BaseModel):
@@ -97,10 +97,15 @@ class ScoringBase(BaseModel):
     omgeving: Optional[int] = None  # Add omgeving field
     veiligheid: Optional[int] = None  # Add veiligheid field
     imago: Optional[int] = None  # Add imago field
+    risks: List[SimplifiedRisk] = []  # Reference to SimplifiedRisk
 
 
 class ScoringCreate(ScoringBase):
-    pass
+    risks: Optional[List[int]] = []
+
+
+class ScoringUpdate(ScoringBase):
+    risks: Optional[List[int]] = []
 
 
 class Scoring(ScoringBase):

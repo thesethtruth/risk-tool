@@ -79,6 +79,12 @@ def create_measure(db: Session, measure: schemas.MeasureCreate):
         deadline=measure.deadline,
         status=measure.status,
     )
+    db_measure.risks = []
+    for risk_id in measure.risks:
+        risk = db.query(models.Risk).filter(models.Risk.id == risk_id).first()
+        if not risk:
+            raise HTTPException(status_code=404, detail="Risk not found")
+        db_measure.risks.append(risk)
     db.add(db_measure)
     db.commit()
     db.refresh(db_measure)
@@ -94,7 +100,12 @@ def update_measure(db: Session, measure_id: int, measure: schemas.MeasureUpdate)
         db_measure.owner = measure.owner
         db_measure.deadline = measure.deadline
         db_measure.status = measure.status
-        db_measure.risks = measure.risks
+        db_measure.risks = []
+        for risk_id in measure.risks:
+            risk = db.query(models.Risk).filter(models.Risk.id == risk_id).first()
+            if not risk:
+                raise HTTPException(status_code=404, detail="Risk not found")
+            db_measure.risks.append(risk)
         db.commit()
         db.refresh(db_measure)
     return db_measure

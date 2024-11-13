@@ -10,6 +10,13 @@ risk_measures = Table(
     Column("measure_id", Integer, ForeignKey("measures.id"), primary_key=True),
 )
 
+risk_scorings = Table(
+    "risk_scorings",
+    Base.metadata,
+    Column("risk_id", Integer, ForeignKey("risks.id"), primary_key=True),
+    Column("scoring_id", Integer, ForeignKey("scorings.id"), primary_key=True),
+)
+
 
 class Risk(Base):
     __tablename__ = "risks"
@@ -25,6 +32,7 @@ class Risk(Base):
     responsible = Column(String(255))  # Add responsible field
     status = Column(String(255))  # Add status field
     measures = relationship("Measure", secondary=risk_measures, back_populates="risks")
+    scorings = relationship("Scoring", secondary=risk_scorings, back_populates="risks")
 
 
 class Measure(Base):
@@ -44,6 +52,7 @@ class Mapping(Base):
     id = Column(Integer, primary_key=True, index=True)
     risk_id = Column(Integer, ForeignKey("risks.id"))
     measure_id = Column(Integer, ForeignKey("measures.id"))
+    scoring_id = Column(Integer, ForeignKey("scorings.id"))
 
 
 class Scoring(Base):
@@ -59,6 +68,7 @@ class Scoring(Base):
     omgeving = Column(Integer)  # Add omgeving field
     veiligheid = Column(Integer)  # Add veiligheid field
     imago = Column(Integer)  # Add imago field
+    risks = relationship("Risk", back_populates="scorings")
 
 
 class Rubric(Base):
