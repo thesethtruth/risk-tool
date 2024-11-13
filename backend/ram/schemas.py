@@ -1,3 +1,4 @@
+from __future__ import annotations
 from pydantic import BaseModel
 from typing import List, Optional
 from datetime import date
@@ -5,7 +6,6 @@ from datetime import date
 
 class MeasureBase(BaseModel):
     name: str
-    description: Optional[str] = None
     owner: Optional[str] = None  # Add owner field
     deadline: Optional[date] = None  # Add deadline field
     status: Optional[str] = None  # Add status field
@@ -15,16 +15,8 @@ class MeasureCreate(MeasureBase):
     pass
 
 
-class Measure(MeasureBase):
-    id: int
-    risks: List[int] = []
-
-    class Config:
-        orm_mode: True
-
-
 class MeasureUpdate(MeasureBase):
-    risks: List[int] = []
+    pass
 
 
 class RiskBase(BaseModel):
@@ -43,16 +35,40 @@ class RiskCreate(RiskBase):
     pass
 
 
-class Risk(RiskBase):
-    id: int
-    measures: List[Measure] = []
-
-    class Config:
-        orm_mode: True
-
-
 class RiskUpdate(RiskBase):
     measures: List[int] = []
+
+
+class SimplifiedRisk(BaseModel):
+    id: int
+    name: str
+
+    class Config:
+        orm_mode = True
+
+
+class Measure(MeasureBase):
+    id: int
+    risks: List[SimplifiedRisk] = []  # Reference to SimplifiedRisk
+
+    class Config:
+        orm_mode = True
+
+
+class SimplifiedMeasure(BaseModel):
+    id: int
+    name: str
+
+    class Config:
+        orm_mode = True
+
+
+class Risk(RiskBase):
+    id: int
+    measures: List[SimplifiedMeasure] = []  # Reference to SimplifiedMeasure
+
+    class Config:
+        orm_mode = True
 
 
 class MappingBase(BaseModel):
@@ -68,7 +84,7 @@ class Mapping(MappingBase):
     id: int
 
     class Config:
-        orm_mode: True
+        orm_mode = True
 
 
 class ScoringBase(BaseModel):
@@ -91,7 +107,7 @@ class Scoring(ScoringBase):
     id: int
 
     class Config:
-        orm_mode: True
+        orm_mode = True
 
 
 class RubricBase(BaseModel):
@@ -111,4 +127,4 @@ class Rubric(RubricBase):
     id: int
 
     class Config:
-        orm_mode: True
+        orm_mode = True

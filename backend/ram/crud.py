@@ -1,3 +1,4 @@
+from fastapi import HTTPException
 from sqlalchemy.orm import Session
 from . import models, schemas
 
@@ -40,9 +41,19 @@ def update_risk(db: Session, risk_id: int, risk: schemas.RiskUpdate):
         db_risk.allocation = risk.allocation
         db_risk.responsible = risk.responsible
         db_risk.status = risk.status
+        db_risk.measures = []
+        for measure_id in risk.measures:
+            measure = (
+                db.query(models.Measure).filter(models.Measure.id == measure_id).first()
+            )
+            if not measure:
+                raise HTTPException(status_code=404, detail="Measure not found")
+            db_risk.measures.append(measure)
+        db.add(db_risk)
         db.commit()
         db.refresh(db_risk)
-    return db_risk
+
+        return db_risk
 
 
 def delete_risk(db: Session, risk_id: int):
@@ -64,7 +75,6 @@ def get_measures(db: Session, skip: int = 0, limit: int = 10):
 def create_measure(db: Session, measure: schemas.MeasureCreate):
     db_measure = models.Measure(
         name=measure.name,
-        description=measure.description,
         owner=measure.owner,
         deadline=measure.deadline,
         status=measure.status,
@@ -81,10 +91,10 @@ def update_measure(db: Session, measure_id: int, measure: schemas.MeasureUpdate)
     )
     if db_measure:
         db_measure.name = measure.name
-        db_measure.description = measure.description
         db_measure.owner = measure.owner
         db_measure.deadline = measure.deadline
         db_measure.status = measure.status
+        db_measure.risks = measure.risks
         db.commit()
         db.refresh(db_measure)
     return db_measure
