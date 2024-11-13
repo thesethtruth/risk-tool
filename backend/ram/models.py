@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, ForeignKey, Table
+from sqlalchemy import Column, Integer, String, ForeignKey, Table, Date
 from sqlalchemy.orm import relationship
 from .database import Base
 
@@ -17,6 +17,13 @@ class Risk(Base):
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String(255), index=True)  # Specify length for String
     description = Column(String(255))  # Specify length for String
+    cause = Column(String(255))  # Add cause field
+    consequence = Column(String(255))  # Add consequence field
+    phase = Column(String(255))  # Add phase field
+    theme = Column(String(255))  # Add theme field
+    allocation = Column(String(255))  # Add allocation field
+    responsible = Column(String(255))  # Add responsible field
+    status = Column(String(255))  # Add status field
     measures = relationship("Measure", secondary=risk_measures, back_populates="risks")
 
 
@@ -25,7 +32,9 @@ class Measure(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String(255), index=True)  # Specify length for String
-    description = Column(String(255))  # Specify length for String
+    owner = Column(String(255))  # Add owner field
+    deadline = Column(Date)  # Add deadline field
+    status = Column(String(255))  # Add status field
     risks = relationship("Risk", secondary=risk_measures, back_populates="measures")
 
 
@@ -43,6 +52,13 @@ class Scoring(Base):
     id = Column(Integer, primary_key=True, index=True)
     risk_id = Column(Integer, ForeignKey("risks.id"))
     score = Column(Integer)
+    likelihood = Column(Integer)  # Add likelihood field
+    geld = Column(Integer)  # Add geld field
+    tijd = Column(Integer)  # Add tijd field
+    kwaliteit = Column(Integer)  # Add kwaliteit field
+    omgeving = Column(Integer)  # Add omgeving field
+    veiligheid = Column(Integer)  # Add veiligheid field
+    imago = Column(Integer)  # Add imago field
 
 
 class Rubric(Base):

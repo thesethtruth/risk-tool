@@ -11,7 +11,17 @@ def get_risks(db: Session, skip: int = 0, limit: int = 10):
 
 
 def create_risk(db: Session, risk: schemas.RiskCreate):
-    db_risk = models.Risk(name=risk.name, description=risk.description)
+    db_risk = models.Risk(
+        name=risk.name,
+        description=risk.description,
+        cause=risk.cause,
+        consequence=risk.consequence,
+        phase=risk.phase,
+        theme=risk.theme,
+        allocation=risk.allocation,
+        responsible=risk.responsible,
+        status=risk.status,
+    )
     db.add(db_risk)
     db.commit()
     db.refresh(db_risk)
@@ -23,6 +33,13 @@ def update_risk(db: Session, risk_id: int, risk: schemas.RiskUpdate):
     if db_risk:
         db_risk.name = risk.name
         db_risk.description = risk.description
+        db_risk.cause = risk.cause
+        db_risk.consequence = risk.consequence
+        db_risk.phase = risk.phase
+        db_risk.theme = risk.theme
+        db_risk.allocation = risk.allocation
+        db_risk.responsible = risk.responsible
+        db_risk.status = risk.status
         db.commit()
         db.refresh(db_risk)
     return db_risk
@@ -45,7 +62,13 @@ def get_measures(db: Session, skip: int = 0, limit: int = 10):
 
 
 def create_measure(db: Session, measure: schemas.MeasureCreate):
-    db_measure = models.Measure(name=measure.name, description=measure.description)
+    db_measure = models.Measure(
+        name=measure.name,
+        description=measure.description,
+        owner=measure.owner,
+        deadline=measure.deadline,
+        status=measure.status,
+    )
     db.add(db_measure)
     db.commit()
     db.refresh(db_measure)
@@ -59,10 +82,9 @@ def update_measure(db: Session, measure_id: int, measure: schemas.MeasureUpdate)
     if db_measure:
         db_measure.name = measure.name
         db_measure.description = measure.description
-        db_measure.probability = measure.probability
-        db_measure.consequence_money = measure.consequence_money
-        db_measure.consequence_time = measure.consequence_time
-        db_measure.consequence_quality = measure.consequence_quality
+        db_measure.owner = measure.owner
+        db_measure.deadline = measure.deadline
+        db_measure.status = measure.status
         db.commit()
         db.refresh(db_measure)
     return db_measure
