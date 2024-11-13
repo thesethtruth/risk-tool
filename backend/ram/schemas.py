@@ -1,12 +1,15 @@
 from pydantic import BaseModel
 from typing import List, Optional
 
+
 class MeasureBase(BaseModel):
     name: str
     description: Optional[str] = None
 
+
 class MeasureCreate(MeasureBase):
     pass
+
 
 class Measure(MeasureBase):
     id: int
@@ -15,12 +18,19 @@ class Measure(MeasureBase):
     class Config:
         orm_mode: True
 
+
+class MeasureUpdate(MeasureBase):
+    risks: List[int] = []
+
+
 class RiskBase(BaseModel):
     name: str
     description: Optional[str] = None
 
+
 class RiskCreate(RiskBase):
     pass
+
 
 class Risk(RiskBase):
     id: int
@@ -29,12 +39,19 @@ class Risk(RiskBase):
     class Config:
         orm_mode: True
 
+
+class RiskUpdate(RiskBase):
+    measures: List[int] = []
+
+
 class MappingBase(BaseModel):
     risk_id: int
     measure_id: int
 
+
 class MappingCreate(MappingBase):
     pass
+
 
 class Mapping(MappingBase):
     id: int
@@ -42,14 +59,37 @@ class Mapping(MappingBase):
     class Config:
         orm_mode: True
 
+
 class ScoringBase(BaseModel):
     risk_id: int
     score: int
 
+
 class ScoringCreate(ScoringBase):
     pass
 
+
 class Scoring(ScoringBase):
+    id: int
+
+    class Config:
+        orm_mode: True
+
+
+class RubricBase(BaseModel):
+    name: str
+    description: Optional[str] = None
+
+
+class RubricCreate(RubricBase):
+    pass
+
+
+class RubricUpdate(RubricBase):
+    pass
+
+
+class Rubric(RubricBase):
     id: int
 
     class Config:

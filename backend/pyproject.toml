@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "risk-management-app"
+version = "0.1.0"
+description = "A risk management application using FastAPI and SQLAlchemy. RAM is short for Risk and Morty. No, wait. Risk and Management. That's it."
+authors = ["Seth van Wieringen <seth.van.wieringen@witteveenbos.com>"]
+license = "-"
+readme = "README.md"
+packages = [
+    {include = "ram"},
+]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = {extras = ["standard"], version = "^0.115.5"}
+uvicorn = "^0.31"
+sqlalchemy = "^1.4.22"
+pydantic = "^2"
+cryptography = "^43.0.3"
+
+
+[tool.poetry.dev-dependencies]
+pytest = "^8"
+black = "^24"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
