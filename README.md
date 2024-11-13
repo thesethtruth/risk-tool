@@ -1,2 +1,1 @@
-# risk-tool-wb
-A repository for tool stack specification project
+This repository is empty. Any task executed on it should be considered a new capability and needs to be created.
