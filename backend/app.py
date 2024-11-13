@@ -94,3 +94,40 @@ def delete_measure(measure_id: int, db: Session = Depends(get_db)):
     if db_measure is None:
         raise HTTPException(status_code=404, detail="Measure not found")
     return crud.delete_measure(db=db, measure_id=measure_id)
+
+
+@app.post("/projects/", response_model=schemas.Project)
+def create_project(project: schemas.ProjectCreate, db: Session = Depends(get_db)):
+    return crud.create_project(db=db, project=project)
+
+
+@app.get("/projects/", response_model=List[schemas.Project])
+def read_projects(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
+    projects = crud.get_projects(db, skip=skip, limit=limit)
+    return projects
+
+
+@app.get("/projects/{project_id}", response_model=schemas.Project)
+def read_project(project_id: int, db: Session = Depends(get_db)):
+    db_project = crud.get_project(db, project_id=project_id)
+    if db_project is None:
+        raise HTTPException(status_code=404, detail="Project not found")
+    return db_project
+
+
+@app.put("/projects/{project_id}", response_model=schemas.Project)
+def update_project(
+    project_id: int, project: schemas.ProjectUpdate, db: Session = Depends(get_db)
+):
+    db_project = crud.get_project(db, project_id=project_id)
+    if db_project is None:
+        raise HTTPException(status_code=404, detail="Project not found")
+    return crud.update_project(db=db, project=project, project_id=project_id)
+
+
+@app.delete("/projects/{project_id}", response_model=schemas.Project)
+def delete_project(project_id: int, db: Session = Depends(get_db)):
+    db_project = crud.get_project(db, project_id=project_id)
+    if db_project is None:
+        raise HTTPException(status_code=404, detail="Project not found")
+    return crud.delete_project(db=db, project_id=project_id)

@@ -164,3 +164,50 @@ def delete_rubric(db: Session, rubric_id: int):
         db.delete(db_rubric)
         db.commit()
     return db_rubric
+
+
+def get_project(db: Session, project_id: int):
+    return db.query(models.Project).filter(models.Project.id == project_id).first()
+
+
+def get_projects(db: Session, skip: int = 0, limit: int = 10):
+    return db.query(models.Project).offset(skip).limit(limit).all()
+
+
+def create_project(db: Session, project: schemas.ProjectCreate):
+    db_project = models.Project(
+        title=project.title,
+        project_number=project.project_number,
+        date_of_creation=project.date_of_creation,
+        date_of_risk_session=project.date_of_risk_session,
+        status_of_risk_file=project.status_of_risk_file,
+    )
+    db.add(db_project)
+    db.commit()
+    db.refresh(db_project)
+    return db_project
+
+
+def update_project(db: Session, project_id: int, project: schemas.ProjectUpdate):
+    db_project = (
+        db.query(models.Project).filter(models.Project.id == project_id).first()
+    )
+    if db_project:
+        db_project.title = project.title
+        db_project.project_number = project.project_number
+        db_project.date_of_creation = project.date_of_creation
+        db_project.date_of_risk_session = project.date_of_risk_session
+        db_project.status_of_risk_file = project.status_of_risk_file
+        db.commit()
+        db.refresh(db_project)
+    return db_project
+
+
+def delete_project(db: Session, project_id: int):
+    db_project = (
+        db.query(models.Project).filter(models.Project.id == project_id).first()
+    )
+    if db_project:
+        db.delete(db_project)
+        db.commit()
+    return db_project

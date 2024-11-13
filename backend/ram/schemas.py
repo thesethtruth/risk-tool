@@ -2,6 +2,7 @@ from __future__ import annotations
 from pydantic import BaseModel
 from typing import List, Optional
 from datetime import date
+from ram.enums import RiskFileStatus
 
 
 class MeasureBase(BaseModel):
@@ -130,6 +131,29 @@ class RubricUpdate(RubricBase):
 
 class Rubric(RubricBase):
     id: int
+
+    class Config:
+        orm_mode = True
+
+
+class ProjectBase(BaseModel):
+    title: str
+    project_number: int
+    date_of_creation: date
+    date_of_risk_session: date
+    status_of_risk_file: RiskFileStatus
+
+
+class ProjectCreate(ProjectBase):
+    pass
+
+
+class ProjectUpdate(ProjectBase):
+    pass
+
+
+class Project(ProjectBase):
+    risks: List[SimplifiedRisk] = []  # Reference to SimplifiedRisk
 
     class Config:
         orm_mode = True
