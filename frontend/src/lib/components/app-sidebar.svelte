@@ -1,6 +1,6 @@
 <script lang="ts">
 	import * as Sidebar from '$lib/components/ui/sidebar/index.js';
-	import { ChartBar, FileText, Home, Settings, Users } from 'lucide-svelte';
+	import { ChartBar, FileSearch, FileText, Home } from 'lucide-svelte';
 
 	const items = [
 		{
@@ -9,24 +9,19 @@
 			icon: Home
 		},
 		{
-			title: 'Projects',
-			url: '/projects',
+			title: 'Risk dossiers',
+			url: '/risk-dossiers',
 			icon: FileText
 		},
 		{
-			title: 'Analytics',
-			url: '/analytics',
+			title: 'Dashboard',
+			url: '/dashboard',
 			icon: ChartBar
 		},
 		{
-			title: 'Team',
-			url: '/team',
-			icon: Users
-		},
-		{
-			title: 'Settings',
-			url: '/settings',
-			icon: Settings
+			title: 'Search',
+			url: '/search',
+			icon: FileSearch
 		}
 	];
 </script>
