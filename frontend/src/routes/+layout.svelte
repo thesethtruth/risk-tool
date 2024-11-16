@@ -7,18 +7,14 @@
 	let { children } = $props();
 </script>
 
-<div class="flex flex-col">
-	<Header />
-	<div class="flex-1 overflow-auto">
-		<Sidebar.Provider>
-			<div class="flex">
-				<AppSidebar />
-				<div class="z-20 p-10">
-					<!-- Render children in the content area -->
-					{@render children()}
-				</div>
+<Sidebar.Provider>
+	<AppSidebar />
+	<Sidebar.Inset>
+		<main>
+			<Header />
+			<div class="flex p-10">
+				{@render children?.()}
 			</div>
-		</Sidebar.Provider>
-	</div>
-	<!-- <Footer /> -->
-</div>
+		</main>
+	</Sidebar.Inset>
+</Sidebar.Provider>
