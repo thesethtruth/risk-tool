@@ -9,7 +9,7 @@
 			icon: Home
 		},
 		{
-			title: 'Risico dossiers',
+			title: 'Risicodossiers',
 			url: '/risk-dossiers',
 			icon: FileText
 		},

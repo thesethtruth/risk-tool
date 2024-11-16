@@ -9,7 +9,7 @@
 	class="sticky top-0 z-50 flex h-12 w-full items-center justify-between bg-white px-4 py-1 shadow-sm"
 >
 	<Sidebar.Trigger />
-	<HeaderSearch placeholder="Zoeken of uitvoeren" class="w-96" />
+	<HeaderSearch placeholder="Zoeken of uitvoeren" class="w-full min-w-64 max-w-96" />
 	<div class="flex items-center gap-3 pr-2">
 		<Ellipsis />
 
