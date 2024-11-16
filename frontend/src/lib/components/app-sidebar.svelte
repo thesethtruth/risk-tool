@@ -31,7 +31,7 @@
 	];
 </script>
 
-<Sidebar.Root collapsible="icon">
+<Sidebar.Root collapsible="icon" class="z-50">
 	<Sidebar.Header>
 		<div class="flex h-[60px] items-center px-6">
 			<span class="font-semibold">Risk Tool</span>
@@ -58,8 +58,18 @@
 		</Sidebar.Group>
 	</Sidebar.Content>
 	<Sidebar.Footer>
-		<div class="flex h-[60px] items-center px-6">
+		<div class="flex flex-col items-center justify-center px-6">
 			<span class="text-muted-foreground text-sm">Generic FE v0.0.2</span>
+			<div class="text-muted-foreground flex items-center gap-2 text-xs">
+				<a
+					href="https://sethvanwieringen.dev/"
+					class="border-b border-transparent transition-all duration-200 hover:border-gray-400"
+				>
+					Seth van Wieringen
+				</a>
+				<span class="text-gray-400">•</span>
+				<span>© {new Date().getFullYear()}</span>
+			</div>
 		</div>
 	</Sidebar.Footer>
 </Sidebar.Root>
