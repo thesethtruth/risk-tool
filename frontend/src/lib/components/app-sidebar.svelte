@@ -1,6 +1,6 @@
 <script lang="ts">
 	import * as Sidebar from '$lib/components/ui/sidebar/index.js';
-	import { ChartBar, FileSearch, FileText, Home } from 'lucide-svelte';
+	import { Blocks, ChartBar, FileSearch, FileText, Home } from 'lucide-svelte';
 
 	const items = [
 		{
@@ -9,7 +9,7 @@
 			icon: Home
 		},
 		{
-			title: 'Risk dossiers',
+			title: 'Risico dossiers',
 			url: '/risk-dossiers',
 			icon: FileText
 		},
@@ -19,7 +19,7 @@
 			icon: ChartBar
 		},
 		{
-			title: 'Search',
+			title: 'Zoeken',
 			url: '/search',
 			icon: FileSearch
 		}
@@ -28,8 +28,9 @@
 
 <Sidebar.Root collapsible="icon" class="z-50">
 	<Sidebar.Header>
-		<div class="flex h-[60px] items-center px-6">
-			<span class="font-semibold" data-collapsed-hide>Risk Tool</span>
+		<div class="flex h-[60px] items-center gap-3 px-6">
+			<Blocks />
+			<span class="font-semibold" data-collapsed-hide>Risico Tool</span>
 		</div>
 	</Sidebar.Header>
 	<Sidebar.Content>
