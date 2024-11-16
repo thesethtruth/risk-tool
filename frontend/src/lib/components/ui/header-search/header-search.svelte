@@ -7,11 +7,12 @@
 		ref = $bindable(null),
 		value = $bindable(),
 		class: className,
+		classParent: classParent,
 		...restProps
 	}: WithElementRef<HTMLInputAttributes> = $props();
 </script>
 
-<div class="relative">
+<div class={cn('relative', classParent)}>
 	<svg
 		xmlns="http://www.w3.org/2000/svg"
 		width="24"
