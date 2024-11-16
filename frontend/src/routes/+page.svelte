@@ -7,6 +7,12 @@
 	import { FileText, FolderPlus } from 'lucide-svelte';
 </script>
 
+<div
+	class="hidden translate-x-[10px] gap-[-20px] pb-4 hover:brightness-100 hover:contrast-100 hover:saturate-100 hover:filter-none"
+>
+	asdfasdfasdfas
+</div>
+
 <div class="container mx-auto p-4">
 	<h1 class="mb-4 text-2xl font-bold">Welkom, Seth</h1>
 	<p>Blader door de zijbalk, open een recent project voortzetten of een nieuw project maken!</p>
@@ -58,8 +64,8 @@
 						<Table.Cell>
 							<Avatar.Root class="h-8 w-8">
 								<Avatar.Image
-									src="https://sethvanwieringen.dev/seth_comp.jpg"
-									alt="@thesethtruth"
+									src="https://api.dicebear.com/9.x/personas/svg?seed=John?&backgroundColor=b6e3f4"
+									alt="avatar"
 								/>
 								<Avatar.Fallback>Z</Avatar.Fallback>
 							</Avatar.Root>
@@ -74,8 +80,8 @@
 						<Table.Cell>
 							<Avatar.Root class="h-8 w-8">
 								<Avatar.Image
-									src="https://avatars.githubusercontent.com/u/97721322?v=4"
-									alt="someguy"
+									src="https://api.dicebear.com/9.x/personas/svg?seed=James&backgroundColor=b6e3f4"
+									alt="avatar"
 								/>
 								<Avatar.Fallback>Z</Avatar.Fallback>
 							</Avatar.Root>

@@ -1,6 +1,13 @@
 <script lang="ts">
 	import * as Sidebar from '$lib/components/ui/sidebar/index.js';
-	import { Blocks, ChartBar, FileSearch, FileText, Home } from 'lucide-svelte';
+	import {
+		Blocks,
+		ChartBar,
+		FileSearch,
+		FileText,
+		Home,
+		SquareDashedMousePointer
+	} from 'lucide-svelte';
 
 	const items = [
 		{
@@ -49,6 +56,23 @@
 							</Sidebar.MenuButton>
 						</Sidebar.MenuItem>
 					{/each}
+				</Sidebar.Menu>
+			</Sidebar.GroupContent>
+		</Sidebar.Group>
+		<Sidebar.Separator />
+		<Sidebar.Group>
+			<Sidebar.GroupContent>
+				<Sidebar.Menu>
+					<Sidebar.MenuItem>
+						<Sidebar.MenuButton>
+							{#snippet child({ props })}
+								<a href="demo-page" {...props}>
+									<SquareDashedMousePointer />
+									<span data-collapsed-hide>Tijdelijk!</span>
+								</a>
+							{/snippet}
+						</Sidebar.MenuButton>
+					</Sidebar.MenuItem>
 				</Sidebar.Menu>
 			</Sidebar.GroupContent>
 		</Sidebar.Group>
