@@ -5,12 +5,8 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    ports:
-      - "8080:8080"
     depends_on:
       - backend
-    networks:
-      - app-network
 
   backend:
     build:
@@ -21,8 +17,6 @@ services:
     depends_on:
       db:
         condition: service_healthy
-    networks:
-      - app-network
 
   db:
     image: mysql:8.0
@@ -33,20 +27,11 @@ services:
       - MYSQL_ROOT_PASSWORD=rootpassword
     volumes:
       - mysql_data:/var/lib/mysql
-    ports:
-      - "3306:3306"
-    networks:
-      - app-network
-    command: --default-authentication-plugin=mysql_native_password
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "user", "--password=password"]
       interval: 5s
       timeout: 5s
       retries: 5
-
-networks:
-  app-network:
-    driver: bridge
 
 volumes:
   mysql_data:
