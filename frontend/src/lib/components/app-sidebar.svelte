@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { page } from '$app/stores';
 	import * as Sidebar from '$lib/components/ui/sidebar/index.js';
 	import {
 		Blocks,
@@ -46,7 +47,7 @@
 				<Sidebar.Menu>
 					{#each items as item (item.title)}
 						<Sidebar.MenuItem>
-							<Sidebar.MenuButton size="lg">
+							<Sidebar.MenuButton isActive={$page.url.pathname === item.url} size="lg">
 								{#snippet child({ props })}
 									<a href={item.url} {...props}>
 										<svelte:component this={item.icon} />
@@ -64,7 +65,7 @@
 			<Sidebar.GroupContent>
 				<Sidebar.Menu>
 					<Sidebar.MenuItem>
-						<Sidebar.MenuButton size="lg">
+						<Sidebar.MenuButton isActive={$page.url.pathname === '/demo-page'} size="lg">
 							{#snippet child({ props })}
 								<a href="demo-page" {...props}>
 									<SquareDashedMousePointer />
