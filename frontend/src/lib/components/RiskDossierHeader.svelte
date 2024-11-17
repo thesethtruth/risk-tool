@@ -3,7 +3,6 @@
 	import { Badge } from '$lib/components/ui/badge/index.js';
 	import { Settings } from 'lucide-svelte';
 	const names = ['Jane', 'Jane', 'Jack', 'Josphine', 'Jill'];
-	length = names.length;
 </script>
 
 <div class="flex w-full justify-between">
@@ -18,7 +17,7 @@
 		</div>
 		<!-- overlapping avatars -->
 		<div class="mt-2 flex flex-row items-center justify-between">
-			{#each Array(length) as _, index}
+			{#each Array(names.length) as _, index}
 				<Avatar.Root
 					class="-ml-2 h-6 w-6 brightness-150 contrast-50 saturate-0 first:ml-0 hover:ml-0 hover:brightness-100 hover:contrast-100 hover:saturate-100"
 				>

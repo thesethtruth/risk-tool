@@ -1,7 +1,8 @@
 <script lang="ts" generics="TData, TValue">
 	import { createSvelteTable, FlexRender } from '$lib/components/ui/data-table/index.js';
+	import { ScrollArea } from '$lib/components/ui/scroll-area/index.js';
 	import * as Table from '$lib/components/ui/table/index.js';
-	import { type ColumnDef, getCoreRowModel } from '@tanstack/table-core';
+	import { type ColumnDef, flattenBy, getCoreRowModel } from '@tanstack/table-core';
 
 	type DataTableProps<TData, TValue> = {
 		columns: ColumnDef<TData, TValue>[];
@@ -19,7 +20,7 @@
 	});
 </script>
 
-<div class="rounded-md border">
+<ScrollArea class="h-[550px] rounded-md border">
 	<Table.Root>
 		<Table.Header>
 			{#each table.getHeaderGroups() as headerGroup (headerGroup.id)}
@@ -53,4 +54,4 @@
 			{/each}
 		</Table.Body>
 	</Table.Root>
-</div>
+</ScrollArea>
