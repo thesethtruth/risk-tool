@@ -19,7 +19,7 @@
 		<div class="mt-2 flex flex-row items-center justify-between">
 			{#each Array(names.length) as _, index}
 				<Avatar.Root
-					class="-ml-2 h-6 w-6 brightness-150 contrast-50 saturate-0 first:ml-0 hover:ml-0 hover:brightness-100 hover:contrast-100 hover:saturate-100"
+					class="-ml-2 h-6 w-6 brightness-150 contrast-50 saturate-0 transition-all first:ml-0 hover:ml-0 hover:brightness-100 hover:contrast-100 hover:saturate-100"
 				>
 					<Avatar.Image
 						src="https://api.dicebear.com/9.x/personas/svg?seed={names[
