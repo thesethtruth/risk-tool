@@ -1,7 +1,10 @@
 <script lang="ts">
+	import Text from '$lib/components/Text.svelte';
 </script>
 
-<div class="container mx-auto p-4">
-	<h1 class="mb-4 text-2xl font-bold">Dashboard</h1>
-	<p>Dashboard-analyses en -metriek worden hier weergegeven.</p>
-</div>
+<Text variant="h1">Dashboard</Text>
+<Text variant="p" class="max-w-2xl break-words">
+	Op het dashboard krijg je een overzicht van alle actieve risicodossiers waarbij je betrokken bent.
+	Hier kan je snel zien welke acties er nog openstaan en welke dossiers extra aandacht nodig hebben.
+	Denk hierbij aan openstaande acties, deadlines en risicosessies.
+</Text>

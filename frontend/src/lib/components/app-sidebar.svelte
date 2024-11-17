@@ -7,7 +7,8 @@
 		FileSearch,
 		FileText,
 		Home,
-		SquareDashedMousePointer
+		SquareDashedMousePointer,
+		Users
 	} from 'lucide-svelte';
 
 	const items = [
@@ -25,6 +26,11 @@
 			title: 'Dashboard',
 			url: '/dashboard',
 			icon: ChartBar
+		},
+		{
+			title: 'Sessies',
+			url: '/sessions',
+			icon: Users
 		},
 		{
 			title: 'Zoeken',
@@ -67,9 +73,9 @@
 					<Sidebar.MenuItem>
 						<Sidebar.MenuButton isActive={$page.url.pathname === '/demo-page'} size="lg">
 							{#snippet child({ props })}
-								<a href="demo-page" {...props}>
+								<a href="riskviewer" {...props}>
 									<SquareDashedMousePointer />
-									<span data-collapsed-hide>Tijdelijk!</span>
+									<span data-collapsed-hide>Risicodossier!</span>
 								</a>
 							{/snippet}
 						</Sidebar.MenuButton>

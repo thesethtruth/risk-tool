@@ -13,7 +13,7 @@
 	<div class="flex flex-col items-end justify-between">
 		<div class="flex flex-row items-center justify-between gap-4">
 			<Badge variant="outline" class="h-6">concept</Badge>
-			<Settings />
+			<Settings class="hover:text-primary hover:cursor-pointer" />
 		</div>
 		<!-- overlapping avatars -->
 		<div class="mt-2 flex flex-row items-center justify-between">

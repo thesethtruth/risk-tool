@@ -11,9 +11,9 @@
 	<Sidebar.Trigger />
 	<HeaderSearch placeholder="Zoeken of uitvoeren" class="w-full min-w-64 max-w-96" />
 	<div class="flex items-center gap-3 pr-2">
-		<Ellipsis />
+		<Ellipsis class="hover:text-primary hover:cursor-pointer" />
 
-		<Avatar.Root class="h-8 w-8">
+		<Avatar.Root class="h-8 w-8 transition-all hover:scale-110 hover:cursor-pointer">
 			<Avatar.Image src="https://sethvanwieringen.dev/seth_comp.jpg" alt="@thesethtruth" />
 			<Avatar.Fallback>Z</Avatar.Fallback>
 		</Avatar.Root>

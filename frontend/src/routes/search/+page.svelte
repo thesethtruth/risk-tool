@@ -1,7 +1,9 @@
 <script lang="ts">
+	import Text from '$lib/components/Text.svelte';
 </script>
 
-<div class="container mx-auto p-4">
-	<h1 class="mb-4 text-2xl font-bold">Zoeken</h1>
-	<p>Zoekfunctionaliteit zal hier worden geïmplementeerd.</p>
-</div>
+<Text variant="h1">Zoeken</Text>
+<Text variant="p" class="max-w-2xl break-words">
+	Zoekfunctionaliteit wordt binnen dit scherm geïmplementeerd. Hiermee kan je met semantisch en
+	normaal zoeken precies vinden wat je zoekt. Door alle risicodossiers waar je bij mag.
+</Text>
