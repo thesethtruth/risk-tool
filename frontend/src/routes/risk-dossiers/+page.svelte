@@ -1,7 +1,7 @@
 <script lang="ts">
+	import RiskdossierTable from '$lib/components/RiskDossierOverview.svelte';
+	import Text from '$lib/components/Text.svelte';
 </script>
 
-<div class="container mx-auto p-4">
-	<h1 class="mb-4 text-2xl font-bold">Risicodossiers</h1>
-	<p>Risicodossiers worden hier weergegeven.</p>
-</div>
+<Text variant="h1">Risicodossiers</Text>
+<RiskdossierTable scrollClass="h-[550px]" />

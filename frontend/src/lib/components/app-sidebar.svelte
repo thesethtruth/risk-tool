@@ -46,7 +46,7 @@
 				<Sidebar.Menu>
 					{#each items as item (item.title)}
 						<Sidebar.MenuItem>
-							<Sidebar.MenuButton>
+							<Sidebar.MenuButton size="lg">
 								{#snippet child({ props })}
 									<a href={item.url} {...props}>
 										<svelte:component this={item.icon} />
@@ -64,7 +64,7 @@
 			<Sidebar.GroupContent>
 				<Sidebar.Menu>
 					<Sidebar.MenuItem>
-						<Sidebar.MenuButton>
+						<Sidebar.MenuButton size="lg">
 							{#snippet child({ props })}
 								<a href="demo-page" {...props}>
 									<SquareDashedMousePointer />

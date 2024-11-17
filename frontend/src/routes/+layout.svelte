@@ -12,7 +12,7 @@
 	<Sidebar.Inset>
 		<main>
 			<Header />
-			<div class="flex p-10">
+			<div class="container mx-auto p-10">
 				{@render children?.()}
 			</div>
 		</main>
