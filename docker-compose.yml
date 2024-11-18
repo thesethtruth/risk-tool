@@ -15,7 +15,7 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     ports:
-      - "8000:8000"
+      - "5000:5000"
     environment:
       - DATABASE_URL=mysql://user:password@db:3306/risk_tool
     depends_on:
