@@ -5,9 +5,10 @@ WORKDIR /app
 # Copy package files
 COPY package*.json ./
 
-# Install dependencies and add static adapter
+# Install dependencies and add node adapter
 RUN npm install
-RUN npm install --save-dev @sveltejs/adapter-static
+RUN npm uninstall @sveltejs/adapter-static
+RUN npm install --save-dev @sveltejs/adapter-node
 
 # Copy source code
 COPY . .
@@ -16,14 +17,16 @@ COPY . .
 RUN npm run build
 
 # Production stage
-FROM nginx:alpine
+FROM node:20-slim
 
-# Copy built assets from builder stage - using static adapter output directory
-COPY --from=builder /app/build /usr/share/nginx/html
+WORKDIR /app
 
-# Copy nginx configuration
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+# Copy package files and install production dependencies
+COPY --from=builder /app/package*.json ./
+RUN npm install --production
 
-EXPOSE 80
+# Copy built application
+COPY --from=builder /app/build ./build
 
-CMD ["nginx", "-g", "daemon off;"]
+# Start the application with explicit port
+CMD ["node", "build", "--port", "3000"]
