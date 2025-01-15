@@ -20,7 +20,7 @@ alembic = "^1.14.0"
 pymysql = "^1.1.0"
 
 
-[tool.poetry.dev-dependencies]
+[poetry.group.dev.dependencies]
 pytest = "^8"
 black = "^24"
 
