@@ -1,12 +1,17 @@
 version: '3.8'
 
 services:
+  chromadb:
+    image: ghcr.io/chroma-core/chroma:0.6.3
+    volumes:
+      - type: volume
+        source: mer-chroma-db
+        target: /chroma/chroma
+
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    ports:
-      - "3000:3000"
     depends_on:
       - backend
 
@@ -14,8 +19,6 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    ports:
-      - "5000:5000"
     environment:
       - DATABASE_URL=mysql://user:password@db:3306/risk_tool
     depends_on:
@@ -32,10 +35,11 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "user", "--password=password"]
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "user", "--password=password" ]
       interval: 5s
       timeout: 5s
       retries: 5
 
 volumes:
   mysql_data:
+  mer-chroma-db:
